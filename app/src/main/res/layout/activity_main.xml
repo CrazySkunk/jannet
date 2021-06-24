@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="40dp"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Diabetes Health Monitoring Application"
+        android:layout_marginTop="40dp"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        />
+
+<EditText
+    android:id="@+id/email_login"
+    android:layout_width="match_parent"
+    android:layout_marginTop="70dp"
+    android:textColor="@color/black"
+    android:layout_height="wrap_content"
+    android:ems="20"
+    android:hint="Email"
+    android:layout_below="@id/textView"
+    android:inputType="textPersonName"
+    />
+
+<EditText
+    android:id="@+id/psswd"
+    android:layout_below="@+id/email_login"
+    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:textColor="@color/black"
+    android:hint="Password"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPassword" />
+
+<Button
+    android:id="@+id/Login"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/psswd"
+    android:textColor="@color/white"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="30dp"
+    android:background="@drawable/round_button"
+    android:text="@string/login" />
+
+<Button
+    android:id="@+id/Register"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/Login"
+    android:textColor="@color/white"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/round_button"
+    android:text="@string/Register" />
+    </RelativeLayout>
