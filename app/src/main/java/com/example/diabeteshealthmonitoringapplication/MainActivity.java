@@ -1,22 +1,17 @@
 package com.example.diabeteshealthmonitoringapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.ims.RegistrationManager;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.auth.AuthCredential;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 
 public class MainActivity extends AppCompatActivity {
-    Button loginBtn;
     private String email, password;
 
     @Override
@@ -26,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         EditText mEmail = findViewById(R.id.email_login);
         EditText pass = findViewById(R.id.psswd);
 
-        Button login = (Button) findViewById(R.id.Login);
+        Button login =  findViewById(R.id.Login);
         login.setOnClickListener(v -> {
             this.email = mEmail.getText().toString().trim();
             this.password = pass.getText().toString().trim();
@@ -36,18 +31,16 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(MainActivity.this, Homepage.class));
                         }
                     }).addOnFailureListener(e -> {
-                Toast.makeText(MainActivity.this, "Invalid credential", Toast.LENGTH_SHORT).show();
+                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                    Toast.makeText(MainActivity.this, "Invalid credential", Toast.LENGTH_SHORT).show();
+                }
             });
 
         });
 
-        Button registration = (Button) findViewById(R.id.Register);
-        registration.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentRegistration = new Intent(MainActivity.this, Registration.class);
-                startActivity(intentRegistration);
-            }
+        Button registration = findViewById(R.id.Register);
+        registration.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, Registration.class));
         });
 
     }

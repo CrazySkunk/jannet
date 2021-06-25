@@ -1,7 +1,7 @@
 package com.example.diabeteshealthmonitoringapplication;
 
 public class User {
-    private String uid,username,email,phone;
+    private String uid,username,email,phone,imageUrl;
 
     /***
      * Default empty constructor for firebase
@@ -11,11 +11,12 @@ public class User {
 
     }
 
-    public User(String uid, String username, String email, String phone) {
+    public User(String uid, String username, String email, String phone,String imageUrl) {
         this.uid = uid;
         this.username = username;
         this.email = email;
         this.phone = phone;
+        this.imageUrl = imageUrl;
     }
 
     public String getUid() {
@@ -48,5 +49,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

@@ -2,5 +2,10 @@
     <string name="app_name">Diabetes Health Monitoring Application</string>
     <string name="login">Login</string>
     <string name="Register">Register</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
 
 </resources>
