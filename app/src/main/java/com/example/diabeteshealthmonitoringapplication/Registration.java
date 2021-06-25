@@ -86,27 +86,31 @@ public class Registration extends AppCompatActivity {
                                                 .addOnCompleteListener(task -> {
                                                     if (task.isSuccessful()) {
                                                         String uid = FirebaseAuth.getInstance().getUid();
-                                                        StorageReference reference = FirebaseStorage.getInstance().getReference("user_images/" + uid);
-                                                        reference.putFile(selectedImage)
-                                                                .addOnCompleteListener(task1 -> {
-                                                                    if (task1.isSuccessful()) {
-                                                                        String imageUrl = reference.getDownloadUrl().toString();
-                                                                        User user = new User(
-                                                                                uid,
-                                                                                username,
-                                                                                email,
-                                                                                phone,
-                                                                                imageUrl
-                                                                        );
-                                                                        FirebaseDatabase.getInstance().getReference("users/" + uid)
-                                                                                .setValue(user)
-                                                                                .addOnCompleteListener(t -> {
-                                                                                    if (t.isSuccessful()) {
-                                                                                        startActivity(new Intent(Registration.this, Homepage.class));
-                                                                                    }
-                                                                                });
-                                                                    }
-                                                                });
+                                                        if (selectedImage == null) {
+                                                            Toast.makeText(this, "Please select a profile image", Toast.LENGTH_SHORT).show();
+                                                        } else {
+                                                            StorageReference reference = FirebaseStorage.getInstance().getReference("user_images/" + uid);
+                                                            reference.putFile(selectedImage)
+                                                                    .addOnCompleteListener(task1 -> {
+                                                                        if (task1.isSuccessful()) {
+                                                                            String imageUrl = reference.getDownloadUrl().toString();
+                                                                            User user = new User(
+                                                                                    uid,
+                                                                                    username,
+                                                                                    email,
+                                                                                    phone,
+                                                                                    imageUrl
+                                                                            );
+                                                                            FirebaseDatabase.getInstance().getReference("users/" + uid)
+                                                                                    .setValue(user)
+                                                                                    .addOnCompleteListener(t -> {
+                                                                                        if (t.isSuccessful()) {
+                                                                                            startActivity(new Intent(Registration.this, HomePage.class));
+                                                                                        }
+                                                                                    });
+                                                                        }
+                                                                    });
+                                                        }
 
                                                     }
                                                 }).addOnFailureListener(e -> {
@@ -149,6 +153,8 @@ public class Registration extends AppCompatActivity {
         alertDialog.setPositiveButton("Ok", (dialog, which) -> {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 200);
         });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
     }
 
     @Override

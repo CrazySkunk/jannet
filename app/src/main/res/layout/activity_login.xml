@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:padding="40dp"
     android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -73,4 +73,16 @@
         android:background="@drawable/round_button"
         android:text="@string/Register"
         android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Register"
+        android:layout_alignStart="@+id/Register"
+        android:layout_alignEnd="@+id/Register"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="forgot password"
+        android:textColor="@color/black" />
     </RelativeLayout>

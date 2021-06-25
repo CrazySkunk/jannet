@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiabetesHealthMonitoringApplication">
         <activity android:name=".Registration"></activity>
-        <activity android:name=".Homepage" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".HomePage" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
