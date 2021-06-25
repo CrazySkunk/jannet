@@ -10,11 +10,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Registration extends AppCompatActivity {
@@ -84,7 +84,13 @@ public class Registration extends AppCompatActivity {
                                                 }).addOnFailureListener(e -> {
                                             register.setEnabled(true);
                                             progressBar.setVisibility(View.INVISIBLE);
-                                            Toast.makeText(Registration.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                            if (e instanceof FirebaseAuthUserCollisionException) {
+                                                Toast.makeText(Registration.this, "Use already exists consider logging in", Toast.LENGTH_SHORT).show();
+                                            } else if (e instanceof FirebaseAuthInvalidUserException) {
+                                                Toast.makeText(Registration.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(Registration.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                            }
                                         });
                                     }
                                 }
